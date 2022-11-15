@@ -48,7 +48,7 @@ body {
 
 #header .add-todo {
     width: 100%;
-    padding: 20px 50px 20px 70px;
+    padding: 25px 55px 25px 70px;
     font-size: 25px;
     height: 80px;
 }
@@ -75,13 +75,14 @@ body {
 } */
 
 #content .main-content {
-    display: flex;
-    /* margin: 5px 15px 5px 15px;*/
-    padding: 5px 10px 5px 10px;
-    height: 80px;
-    align-items: center;
-    border: 1px solid #000;
 
+}
+
+#content .todo-list-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px 8px 10px;
+    border: 1px solid red;
 }
 
 #content .check-btn {
@@ -99,9 +100,10 @@ body {
     display: none;
 }
 
-#content :hover .delete-btn{
+#content .main-content .todo-list-item:hover .delete-btn{
     display: block;
 }
+
 
 #footer {
     height: 40px;
