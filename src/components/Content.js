@@ -7,7 +7,7 @@ Content.propTypes = {};
 
 function Content(props) {
   return (
-    <content>
+    <Content>
       <div className="main-content">
         {todoList.map((element) => {
           return (
@@ -21,7 +21,7 @@ function Content(props) {
           );
         })}
       </div>
-    </content>
+    </Content>
   );
 }
 

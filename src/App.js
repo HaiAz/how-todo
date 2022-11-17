@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/alt-text */
 import "./App.css";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid, regular, brands, icon } from "@fortawesome/fontawesome-svg-core/import.macro";
@@ -30,43 +31,53 @@ function App() {
       check: false,
     },
   ]);
-  const [completed, setCompleted] = useState(false);
+  const [listTodo, setListTodo] = useState([]);
+  const [listCompleted, setListCompleted] = useState([]);
+  const [cases, setCases] = useState("all-todo");
+
   const [checkAll, setCheckAll] = useState(false);
   const checkAllTasks = () => {
-    setTodoList((prev) => prev.map((x) => {
-      if(!checkAll){
-        setCheckAll(true);
-        return {...x, check: true};
-      } else  {
-        setCheckAll(false);
-        return {...x, check: false};
-      }
-    }));
+    setTodoList((prev) =>
+      prev.map((x) => {
+        if (!checkAll) {
+          setCheckAll(true);
+          return { ...x, check: true };
+        } else {
+          setCheckAll(false);
+          return { ...x, check: false };
+        }
+      })
+    );
+  };
+  const todo = () => {
+    setCases("todo");
+    setListTodo([...todoList].filter((x) => x.check === false));
   };
 
-  const todo = () => {
-    const newArr = [];
-    // setTodoList((prev) => prev.filter((x) => x.check === false
-    // ));
-    setTodoList((prev) => prev.map((x) => {
-      newArr.push({...x, check: false})
-    }))
-  };
- 
   const todoComplete = () => {
-    setTodoList((prev) => prev.filter((x) => x.check === true
-    ));
+    setCases("completed");
+    setListCompleted([...todoList].filter((x) => x.check === true));
   };
 
   const [task, setTask] = useState([]);
 
-  const todoHandler = () => {
-    setTodoList((prev) => [...prev, {
-      id: Math.floor(Math.random() * 10000),
-      task: task,
-      check: false,
-    }])
-  }
+  const todoHandler = React.useCallback(() => {
+    setTodoList((prev) => [
+      ...prev,
+      {
+        id: Math.floor(Math.random() * 10000),
+        task: task,
+        check: false,
+      },
+    ]);
+  }, [task]);
+  // React.useEffect(() => {
+  //   document.addEventListener("keydown", function (e) {
+  //     if (e.keyCode === 13 && document.activeElement === inputRef.current) {
+  //       todoHandler();
+  //     }
+  //   });
+  // }, [todoHandler]);
 
   const imageHandler = (taskID) => {
     setTodoList((prev) => prev.map((x) => (x.id === taskID ? { ...x, check: !x.check } : x)));
@@ -75,29 +86,60 @@ function App() {
   const deleteBtn = (taskID) => {
     setTodoList((prev) => prev.filter((x) => x.id !== taskID));
   };
+  const inputRef = useRef();
   return (
     <div className="App">
       <div id="container">
         <header id="header">
-        <h1 className="text-todo">todos</h1>
-        <input className="add-todo" placeholder="What needs to be done?" value={task} onChange={e => setTask(e.target.value)}/>
-        <img src={!checkAll? btnNotDone : btnDone } width="40px" height="40px" className="all-done" onClick={checkAllTasks}/>
-        <button onClick={() => todoHandler()}>ADD</button>
+          <h1 className="text-todo">todos</h1>
+          <input className="add-todo" placeholder="What needs to be done?" value={task} onChange={(e) => setTask(e.target.value)} ref={inputRef} />
+          <img src={!checkAll ? btnNotDone : btnDone} width="40px" height="40px" className="all-done" onClick={checkAllTasks} />
+          <button className="btnAdd" onClick={() => todoHandler()}>
+            ADD TODO
+          </button>
         </header>
         <content id="content">
           <div className="main-content">
-          {todoList.map((element) => {
-            return (
-              <div className="todo-list-item" key={element.id}>
-                <img src={!element.check ? btnNotDone : btnDone} width="40px" height="40px" className="check-btn" onClick={() => imageHandler(element.id)} />
-                <div className="todo-list">
-                  <label className="todo">{element.task}</label>
-                </div>
-                <img src={trashBtn} width="25px" height="25px" className="delete-btn" onClick={() => deleteBtn(element.id)} />
-              </div>
-            );
-          })}
-        </div>
+            {/* get All */}
+            {cases === "all-todo" &&
+              todoList.map((element) => {
+                return (
+                  <div className="todo-list-item" key={element.id}>
+                    <img src={!element.check ? btnNotDone : btnDone} width="40px" height="40px" className="check-btn" onClick={() => imageHandler(element.id)} />
+                    <div className="todo-list">
+                      <label className="todo">{element.task}</label>
+                    </div>
+                    <img src={trashBtn} width="25px" height="25px" className="delete-btn" onClick={() => deleteBtn(element.id)} />
+                  </div>
+                );
+              })}
+            {/* get todo */}
+            {cases === "todo" &&
+              listTodo.map((element) => {
+                return (
+                  <div className="todo-list-item" key={element.id}>
+                    <img src={!element.check ? btnNotDone : btnDone} width="40px" height="40px" className="check-btn" onClick={() => imageHandler(element.id)} />
+                    <div className="todo-list">
+                      <label className="todo">{element.task}</label>
+                    </div>
+                    <img src={trashBtn} width="25px" height="25px" className="delete-btn" onClick={() => deleteBtn(element.id)} />
+                  </div>
+                );
+              })}
+            {/* get completed */}
+            {cases === "completed" &&
+              listCompleted.map((element) => {
+                return (
+                  <div className="todo-list-item" key={element.id}>
+                    <img src={!element.check ? btnNotDone : btnDone} width="40px" height="40px" className="check-btn" onClick={() => imageHandler(element.id)} />
+                    <div className="todo-list">
+                      <label className="todo">{element.task}</label>
+                    </div>
+                    <img src={trashBtn} width="25px" height="25px" className="delete-btn" onClick={() => deleteBtn(element.id)} />
+                  </div>
+                );
+              })}
+          </div>
         </content>
         <footer id="footer">
           <div className="item-left">
@@ -105,7 +147,7 @@ function App() {
           </div>
           <div className="btn-todo">
             <div className="list-all action-btn">
-              <span>All</span>
+              <span onClick={() => setCases("all-todo")}>All</span>
             </div>
             <div className="list-todo action-btn">
               <span onClick={() => todo()}>Todo</span>

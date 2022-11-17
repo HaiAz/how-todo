@@ -1,136 +1,127 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .App {
-    width: 100%;
+  width: 100%;
 }
 
 action-btn {
-    
 }
 
 body {
-
 }
 
-
-
 #container {
-    width: 500px;
-    margin: 130px auto;
-    position: relative;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+  width: 500px;
+  margin: 130px auto;
+  position: relative;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
 }
 
 #header {
 }
 
 #header .all-done {
-    position: absolute;
-    left: 10px;
-    top: 20px;
+  position: absolute;
+  left: 10px;
+  top: 20px;
 }
 
 #header .text-todo {
-    position: absolute;
-    top: -130px;
-    left: 30%;
-    font-size: 100px;
-    z-index: 10;
-    margin: 0 auto;
-    font-weight: 200;
-    color: rgb(219, 106, 106);
+  position: absolute;
+  top: -130px;
+  left: 30%;
+  font-size: 100px;
+  z-index: 10;
+  margin: 0 auto;
+  font-weight: 200;
+  color: rgb(219, 106, 106);
 }
 
 #header .add-todo {
-    width: 100%;
-    padding: 25px 55px 25px 70px;
-    font-size: 25px;
-    height: 80px;
+  width: 100%;
+  padding: 25px 55px 25px 70px;
+  font-size: 25px;
+  height: 80px;
 }
 
 #header .icon-check {
-    position: absolute;
-    left: 10px;
-    top: 28px;
-    cursor: pointer;
-    font-size: 20px;
-    color: rgb(111, 103, 103);
+  position: absolute;
+  left: 10px;
+  top: 28px;
+  cursor: pointer;
+  font-size: 20px;
+  color: rgb(111, 103, 103);
 }
 
-/* #content .toggle {
-    background-color: red;
-    color: red;
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
-    margin: 3px 3px 3px 4px;
-    padding: 2px 2px;
-    border: 1px solid red;
-    border-radius: 20px;
-} */
+#header .btnAdd {
+  width: 100%;
+  height: auto;
+  font-size: 20px;
+  padding: 10px 10px 10px 10px;
+  margin: 10px 0 10px 0;
+  background-color: #c85f6b;
+  color: #fff;
+  /* border-radius: 20px; */
+}
 
 #content .main-content {
-
 }
 
 #content .todo-list-item {
-    display: flex;
-    align-items: center;
-    padding: 8px 10px 8px 10px;
-    border: 1px solid red;
+  display: flex;
+  align-items: center;
+  padding: 8px 10px 8px 10px;
+  border: 1px solid #c85f6b;
 }
 
 #content .check-btn {
-    
 }
 
 #content .todo-list {
-    flex: 1;
-    margin: 5px 20px 5px 20px;
-    font-size: 25px;
-    color: rgb(111, 103, 103);;
+  flex: 1;
+  margin: 5px 20px 5px 20px;
+  font-size: 25px;
+  color: rgb(111, 103, 103);
 }
 
 #content .delete-btn {
-    display: none;
+  display: none;
 }
 
-#content .main-content .todo-list-item:hover .delete-btn{
-    display: block;
+#content .main-content .todo-list-item:hover .delete-btn {
+  display: block;
 }
-
 
 #footer {
-    height: 40px;
-    display: flex;
-    align-items: center;
-    font: 25px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  font: 25px;
 }
 
 #footer .item-left {
-    margin: 5px 10px;
-    width: 20%;
+  margin: 5px 10px;
+  width: 20%;
 }
 
 #footer .count {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 #footer .btn-todo {
-    flex: 1;
-    justify-content: space-around;
-    display: flex;
-    margin-left: 20px;
+  flex: 1;
+  justify-content: space-around;
+  display: flex;
+  margin-left: 20px;
 }
 
 .list-all:hover,
 .list-todo:hover,
 .list-completed :hover {
-    color: rgb(193, 97, 196);
-    cursor: pointer;
+  color: rgb(193, 97, 196);
+  cursor: pointer;
 }
