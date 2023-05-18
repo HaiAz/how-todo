@@ -3,9 +3,6 @@
 import "./App.css";
 import React, { useEffect, useRef, useState, useCallback } from "react";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { solid, regular, brands, icon } from "@fortawesome/fontawesome-svg-core/import.macro";
-
 const btnDone =
     "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Eo_circle_green_checkmark.svg/2048px-Eo_circle_green_checkmark.svg.png";
 
